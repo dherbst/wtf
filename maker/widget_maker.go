@@ -34,6 +34,7 @@ import (
 	"github.com/wtfutil/wtf/modules/resourceusage"
 	"github.com/wtfutil/wtf/modules/rollbar"
 	"github.com/wtfutil/wtf/modules/security"
+	"github.com/wtfutil/wtf/modules/sentry"
 	"github.com/wtfutil/wtf/modules/spotify"
 	"github.com/wtfutil/wtf/modules/spotifyweb"
 	"github.com/wtfutil/wtf/modules/status"
@@ -159,6 +160,9 @@ func MakeWidget(
 	case "security":
 		settings := security.NewSettingsFromYAML(widgetName, moduleConfig, globalConfig)
 		widget = security.NewWidget(app, settings)
+	case "sentry":
+		settings := sentry.NewSettingsFromYAML(widgetName, moduleConfig, globalConfig)
+		widget = sentry.NewWidget(app, pages, settings)
 	case "spotify":
 		settings := spotify.NewSettingsFromYAML(widgetName, moduleConfig, globalConfig)
 		widget = spotify.NewWidget(app, pages, settings)
