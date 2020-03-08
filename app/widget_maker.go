@@ -7,9 +7,9 @@ import (
 	"github.com/wtfutil/wtf/modules/bamboohr"
 	"github.com/wtfutil/wtf/modules/bargraph"
 	"github.com/wtfutil/wtf/modules/buildkite"
-	"github.com/wtfutil/wtf/modules/cds/favorites"
-	"github.com/wtfutil/wtf/modules/cds/queue"
-	"github.com/wtfutil/wtf/modules/cds/status"
+	cdsfavorites "github.com/wtfutil/wtf/modules/cds/favorites"
+	cdsqueue "github.com/wtfutil/wtf/modules/cds/queue"
+	cdsstatus "github.com/wtfutil/wtf/modules/cds/status"
 	"github.com/wtfutil/wtf/modules/circleci"
 	"github.com/wtfutil/wtf/modules/clocks"
 	"github.com/wtfutil/wtf/modules/cmdrunner"
@@ -56,6 +56,7 @@ import (
 	"github.com/wtfutil/wtf/modules/spotifyweb"
 	"github.com/wtfutil/wtf/modules/status"
 	"github.com/wtfutil/wtf/modules/subreddit"
+	"github.com/wtfutil/wtf/modules/tasks"
 	"github.com/wtfutil/wtf/modules/textfile"
 	"github.com/wtfutil/wtf/modules/todo"
 	"github.com/wtfutil/wtf/modules/todoist"
@@ -259,6 +260,9 @@ func MakeWidget(
 	case "subreddit":
 		settings := subreddit.NewSettingsFromYAML(moduleName, moduleConfig, config)
 		widget = subreddit.NewWidget(app, pages, settings)
+	case "tasks":
+		settings := tasks.NewSettingsFromYAML(moduleName, moduleConfig, config)
+		widget = tasks.NewWidget(app, pages, settings)
 	case "textfile":
 		settings := textfile.NewSettingsFromYAML(moduleName, moduleConfig, config)
 		widget = textfile.NewWidget(app, pages, settings)
